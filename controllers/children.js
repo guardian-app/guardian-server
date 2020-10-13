@@ -93,8 +93,9 @@ const deleteChild = async (req, res) => {
 
 const updateChild = async (req, res) => {
     const { child_id } = req.params;
-
-    const oldChild = await selectChildById(child_id);
+   
+    const [children] = await selectChildById(child_id);
+    const oldChild = children[0];
     const newChild = req.body;
 
     const child = {

@@ -14,10 +14,10 @@ const getGeofence = async (req, res) => {
 
 const createGeofence = async (req, res) => {
     const { child_id } = req.params;
-    const { longitude, latitude, radius } = req.body;
+    const { longitude, latitude, radius, name } = req.body;
 
     try {
-        await insertGeofence({ child_id, longitude, latitude, radius });
+        await insertGeofence({ child_id, longitude, latitude, radius, name });
         res.status(200).send('Success');
     } catch (err) {
         console.warn(`Generic: ${err}`);

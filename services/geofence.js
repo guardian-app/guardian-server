@@ -3,15 +3,15 @@ const geofence = require('../controllers/geofence');
 
 const selectGeofenceByChildId = (child_id) => {
     return database.execute(
-        'SELECT `geofence_id`, `longitude`, `latitude` FROM `geofence` WHERE `child_id` = ?',
+        'SELECT `geofence_id`, `longitude`, `latitude`, `radius`, `name` FROM `geofence` WHERE `child_id` = ?',
         [child_id]
     );
 };
 
 const insertGeofence = (geofence) => {
     return database.execute(
-        'INSERT INTO `geofence` (`child_id`, `longitude`, `latitude`, `radius`) VALUES (?, ?, ?, ?)',
-        [geofence.child_id, geofence.longitude, geofence.latitude, geofence.radius]
+        'INSERT INTO `geofence` (`child_id`, `longitude`, `latitude`, `radius`, `name`) VALUES (?, ?, ?, ?, ?)',
+        [geofence.child_id, geofence.longitude, geofence.latitude, geofence.radius, geofence.name]
     );
 }
 
