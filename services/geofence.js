@@ -8,6 +8,13 @@ const selectGeofenceByChildId = (child_id) => {
     );
 };
 
+const selectGeofenceById = (geofence_id) => {
+    return database.execute(
+        'SELECT `geofence_id`, `longitude`, `latitude`, `radius`, `name` FROM `geofence` WHERE `geofence_id` = ?',
+        [geofence_id]
+    );
+};
+
 const insertGeofence = (geofence) => {
     return database.execute(
         'INSERT INTO `geofence` (`child_id`, `longitude`, `latitude`, `radius`, `name`) VALUES (?, ?, ?, ?, ?)',
@@ -22,4 +29,4 @@ const deleteGeofenceById = (geofence_id) => {
     )
 }
 
-module.exports = { selectGeofenceByChildId, insertGeofence, deleteGeofenceById }
+module.exports = { selectGeofenceByChildId, insertGeofence, deleteGeofenceById, selectGeofenceById }

@@ -3,10 +3,8 @@ const path = require('path');
 const cors = require('cors');
 const logger = require('morgan');
 const bearerToken = require('express-bearer-token');
+const { Expo } = require("expo-server-sdk");
 const expo = new Expo();
-const cors = require("cors");
-
-app.use(cors());
 
 require('dotenv').config();
 require('./config/database');

@@ -35,9 +35,10 @@ const validateToken = async (req, res, next) => {
                 last_name: user.last_name,
                 address: user.address,
                 phone_number: user.phone_number,
-                role: user.role
+                role: user.role,
             };
 
+            if (user.role === 'child') req.user.parent_id = user.parent_id;
             next();
         } catch (err) {
             console.warn(`Generic: ${err}`);

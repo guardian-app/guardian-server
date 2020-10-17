@@ -21,7 +21,7 @@ const createUser = async (req, res) => {
 
     try {
         await insertUser(user),
-        await insertVerificationKey(email_address, key)
+            await insertVerificationKey(email_address, key)
 
         res.status(201).send('Success');
         await sendVerificationEmail(email_address, key);
@@ -54,7 +54,8 @@ const authenticateUser = async (req, res) => {
                 first_name: user.first_name,
                 last_name: user.last_name,
                 address: user.address,
-                phone_number: user.phone_number
+                phone_number: user.phone_number,
+                parent_id: user.parent_id || null
             }
         });
     } catch (err) {
@@ -189,9 +190,9 @@ const updatePassword = async (req, res) => {
     };
 };
 
-const createContact = async( req, res) => {
+const createContact = async (req, res) => {
     console.log("come contact")
-    const {email_address, first_name, last_name, address, phone_number, relationship} = req.body;
+    const { email_address, first_name, last_name, address, phone_number, relationship } = req.body;
     const parent_id = req.user.user_id;
     console.log(first_name);
 
@@ -205,14 +206,14 @@ const createContact = async( req, res) => {
         parent_id
     };
 
-    try{
+    try {
         await insertContact(contact);
 
         const [contacts] = await selectContactByEmailAddress(email_address);
         console.log(contacts)
         res.status(201).json({ ...contacts[0] });
     }
-    catch(err){
+    catch (err) {
         console.warn(`Generic: ${err}`);
         res.status(500).send('Internal Server Error');
     }
