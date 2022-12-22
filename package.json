@@ -13,7 +13,7 @@
     "expo-server-sdk": "^3.6.0",
     "express": "~4.16.1",
     "express-bearer-token": "^2.4.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "morgan": "~1.9.1",
     "mysql2": "^2.2.5",
     "nanoid": "^3.1.12",
